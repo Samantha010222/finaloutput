@@ -1,11 +1,14 @@
 <?php
 
 namespace App\Http\Controllers;
+use DB;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rules; 
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Http\RedirectResponse;
+use Illuminate\Database\QueryException;
+use App\Illuminate\Http\Response;
 class UserController extends Controller
 {
     /**
@@ -17,7 +20,9 @@ class UserController extends Controller
     {
         //
         $user = User::all();    
-        return view('user.user', ['user' => User::all()]);
+        return view('user.user', [
+            'header' => 'Add User',
+            'user' => User::all()]);
     }
 
     /**
@@ -38,6 +43,7 @@ class UserController extends Controller
             'email'=> $request->email,
             'password' => Hash::make($request->password),
         ]);
+        session()->flash('status', 'Added User Successfully');
         return redirect('/user');
     }
 
@@ -49,7 +55,11 @@ class UserController extends Controller
      */
     public function show($id)
     {
-        //
+        $user = User::find($id);
+        return view('user.form', [
+            'header' => 'Update User',
+            'user' => $user
+        ]);
     }
 
     /**
@@ -61,7 +71,17 @@ class UserController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+               $request->validate([
+            'name' => ['required', 'string', 'max:255'],
+            'email' => ['required', 'string', 'email', 'max:255', 'unique:'.User::class],
+            'password' => [ Rules\Password::defaults()],
+        ]);
+        $user = User::find($id);
+        $user->update($request->all());
+        session()->flash('status', 'Updated User Successfully');
+        return redirect('/user/update/' . $user->id);
+
+
     }
 
     /**
@@ -72,13 +92,19 @@ class UserController extends Controller
      */
     public function destroy($id)
     {
-        //
-
+        $user->delete();
+        return redirect()->route('/user')
+                        ->with('success','deleted successfully');
     }
     public function form()
     {
         //
-        return view('user.form',['user' => User::all()]);
+        return view('user.form',[
+            'user' => User::all(),
+            'header' => 'Add User',
+           
+
+        ]); 
 
     }
 }

@@ -3,6 +3,13 @@
         <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
         </h2>
     </x-slot>
+    @if(session('status'))
+    <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 my-5  font-bold">
+            <div>
+                <span class="font-medium">Succcess </span> {{session('status')}}
+            </div>
+    </div>
+    @endif
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
         <h2 class="text-base font-bold font-size-15px">
@@ -63,9 +70,19 @@
                         {{$user->updated_at}}
                     </div>
                 </td>
+                
                 <td class="px-6 py-4">
-                   <button type="button" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">edit</button>
-                   <button type="button" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">delete</button>
+                <a href="{{url('/user/update/' . $user->id)}}">
+                   <button type="button" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">update</button>
+                </a>
+                </td>
+                
+                <td>
+
+                <a href="{{ url('/user/update/' . $user->id) }}">
+                
+                <button type="button" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">delete</button>
+                </a>
                 </td>
             </tr>
         @endforeach

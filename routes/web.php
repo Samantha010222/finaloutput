@@ -26,11 +26,22 @@ Route::get('/dashboard', function () {
 
 Route::get('/user',[UserController::class, 'index'])
             ->middleware(['auth', 'verified'])
-            ->name('user');
+            ->name('user'); 
+
+
 Route::get('/user/add',[UserController::class, 'form'])
-            ->middleware(['auth', 'verified'])
-            ->name('user.add');
+            ->middleware(['auth', 'verified']);
 Route::post('/user/add',[UserController::class, 'store'])
+            ->middleware(['auth', 'verified']);
+
+
+Route::get('/user/update/{id}',[UserController::class, 'show'])
+            ->middleware(['auth', 'verified']);
+
+
+Route::post('/user/update/{id}',[UserController::class, 'update'])
+            ->middleware(['auth', 'verified']);
+Route::delete('/user/delete/{id}',[UserController::class, 'destroy'])
             ->middleware(['auth', 'verified']);
         
 
