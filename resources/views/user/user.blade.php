@@ -11,13 +11,14 @@
             <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 text-gray-900 dark:text-gray-100">
                 
-
+                    <a href="{{url('/user/add')}}">
+               
                     <div class="flex items-center justify-between pb-4 bg-white dark:bg-gray-900">
-                   <button data-modal-target="authentication-modal" data-modal-toggle="authentication-modal" class="block     text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium   rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600   dark:hover:bg-blue-700 dark:focus:ring-blue-800" type="button">
+                        <button data-modal-target="authentication-modal" data-modal-toggle="authentication-modal" class="block     text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium   rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600   dark:hover:bg-blue-700 dark:focus:ring-blue-800" type="button">
                         Add User
-                    </button>
-            
-        </div>
+                        </button>
+                      </a>
+                    </div>
         <label for="table-search" class="sr-only">Search 
         </label>
         <div class="relative">
@@ -64,7 +65,6 @@
                 </td>
                 <td class="px-6 py-4">
                    <button type="button" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">edit</button>
-
                    <button type="button" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">delete</button>
                 </td>
             </tr>

@@ -24,7 +24,15 @@ Route::get('/dashboard', function () {
 })->middleware(['auth', 'verified'])->name('dashboard');
 
 
-Route::get('/user',[UserController::class, 'index'])->middleware(['auth', 'verified'])->name('user');
+Route::get('/user',[UserController::class, 'index'])
+            ->middleware(['auth', 'verified'])
+            ->name('user');
+Route::get('/user/add',[UserController::class, 'form'])
+            ->middleware(['auth', 'verified'])
+            ->name('user.add');
+Route::post('/user/add',[UserController::class, 'store'])
+            ->middleware(['auth', 'verified']);
+        
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');

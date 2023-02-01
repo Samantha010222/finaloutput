@@ -18,6 +18,7 @@
                     <x-nav-link :href="route('user')" :active="request()->routeIs('user')">
                         {{ __('user') }}
                     </x-nav-link>
+                    
                 </div>
             </div>
 
