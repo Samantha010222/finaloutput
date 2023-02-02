@@ -29,6 +29,11 @@ Route::get('/user',[UserController::class, 'index'])
             ->name('user'); 
 
 
+ Route::get('/announcement', function () {
+                return view('announcement');
+            })->middleware(['auth', 'verified'])->name('announcement');
+
+
 Route::get('/user/add',[UserController::class, 'form'])
             ->middleware(['auth', 'verified']);
 Route::post('/user/add',[UserController::class, 'store'])
@@ -39,10 +44,11 @@ Route::get('/user/update/{id}',[UserController::class, 'show'])
             ->middleware(['auth', 'verified']);
 
 
-Route::post('/user/update/{id}',[UserController::class, 'update'])
+
+
+Route::get('/user/delete/{id}', [UserController::class, 'delete'])
             ->middleware(['auth', 'verified']);
-Route::delete('/user/delete/{id}',[UserController::class, 'destroy'])
-            ->middleware(['auth', 'verified']);
+
         
 
 Route::middleware('auth')->group(function () {

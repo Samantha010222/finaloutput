@@ -84,18 +84,15 @@ class UserController extends Controller
 
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
+    public function delete($id)
     {
-        $user->delete();
-        return redirect()->route('/user')
-                        ->with('success','deleted successfully');
+        $delete = User::find($id);
+        $delete->delete();
+        session()->flash('status', 'User has been Successfully Deleted');
+        return redirect('/user');
     }
+
+
     public function form()
     {
         //
